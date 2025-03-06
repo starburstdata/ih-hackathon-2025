@@ -10,6 +10,7 @@ The assistant generates appropriate SQL queries to retrieve the requested data, 
 
 > [!IMPORTANT]
 > This sample application is meant for demo purposes and is not production ready. Please make sure to validate the code with your organizations security best practices.
+>
 > Clean up resources after you test the demo to avoid unnecessary costs. Follow the clean-up steps provided.
 
 > [!TIP]
