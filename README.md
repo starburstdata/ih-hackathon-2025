@@ -117,7 +117,7 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 
 ## UX Demos
 
-- [Streamlit Demo UI](/examples/agents_ux/streamlit_demo/): Interactive UI for testing and demonstrating multiple Bedrock agents
+- [Streamlit Demo UI](/examples/agents_ux/streamlit_demo/)
 - [Data Analyst Assistant for Video Game Sales](/examples/agents_ux/video_games_sales_assistant_with_amazon_bedrock_agents/)
 
 ## Best Practices
