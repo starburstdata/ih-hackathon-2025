@@ -99,7 +99,7 @@ Also, you can update the general application description:
 - **WELCOME_MESSAGE**
 
 
-### Testing your Data Analyst Assistant Generative AI Application
+### Testing your Data Analyst Assistant
 
 Now you can test your front-end application locally. Execute the following command:
 

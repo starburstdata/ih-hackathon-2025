@@ -144,7 +144,7 @@ Now you can go back to your Amazon Bedrock Agent called **video-games-sales-assi
 
 To use the agent in the front-end application, you need to **create an Alias of your agent**. After you have prepared a version for testing purposes, go to your **Agent Overview** and click on **Create Alias** so that you can use the alias point.
 
-You can now follow the tutorial "[Getting Started with Amplify Video Games Sales Assistant](../amplify-video-games-sales-assistant-sample/)" to deploy the front-end application. The tutorial will ask you for your your alias along with the other services that you have created so far.
+You can now follow the tutorial [Getting Started with Amplify Video Games Sales Assistant](../amplify-video-games-sales-assistant-sample/) to deploy the front-end application. The tutorial will ask you for your your alias along with the other services that you have created so far.
 
 ## Cleaning-up Resources (optional)
 
