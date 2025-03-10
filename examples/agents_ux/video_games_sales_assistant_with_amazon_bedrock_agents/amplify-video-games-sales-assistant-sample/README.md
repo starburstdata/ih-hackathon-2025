@@ -32,7 +32,7 @@ Command to install required npm packages for React.
 npm install
 ```
 
-### Create an IAM User Access Keys for your Front-end Application Permissions
+### Create an IAM User Access Keys for your Front-End Application Permissions
 
 **[Create an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) and [create Access key and Secret access key](https://docs.aws.amazon.com/keyspaces/latest/devguide/create.keypair.html) for programmatic access to your front-end application**, you will use these credentials in **env.js** file.
 
@@ -78,7 +78,7 @@ In the **Permissions policies** section of you user, click **Add permissions** a
 }
 ```
 
-### Configure the Environment Variables for the Front-end Application
+### Configure the Environment Variables for the Front-End Application
 
 Rename the file **src/sample.env.js** to **src/env.js** and update the values of the following variables.
 
