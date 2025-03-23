@@ -3,6 +3,9 @@
   :wave: :wave: Welcome to the Amazon Bedrock Agent Samples repository :wave: :wave:
 </p>
 
+> [!CAUTION]
+> The examples provided in this repository are for experimental and educational purposes only. They demonstrate concepts and techniques but are not intended for direct use in production environments. Make sure to have Amazon Bedrock Guardrails in place to protect against [prompt injection](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html). 
+
 This repository provides examples and best practices for working with [Amazon Bedrock Agents](https://aws.amazon.com/bedrock/agents/).
 
 Amazon Bedrock Agents enables you to automate complex workflows, build robust and scalable end-to-end solutions from experimentation to production and quickly adapt to new models and experiments.
@@ -93,6 +96,7 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 - [Agent with long term memory](/examples/agents/agent_with_long_term_memory/)
 - [Agent using models not yet optimized for Bedrock Agents](/examples/agents/agent_with_models_not_yet_optimized_for_bedrock_agents/)
 - [AWS CDK Agent](/examples/agents/cdk_agent/)
+- [Computer use Agent](/examples/agents/computer_use/)
 - [Custom orchestration Agent](/examples/agents/custom_orchestration_agent/)
 - [Configure an inline agent at runtime](/examples/agents/inline_agent/)
 - [Utilize LangChain Tools with Amazon Bedrock Inline Agents](/examples/agents/langchain_tools_with_inline_agent/)
@@ -101,6 +105,7 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 - [Agents with user confirmation before action execution](/examples/agents/user_confirmation_agents/)
 - [Agents with access to house security camera in cloudformation](/examples/agents/connected_house_agent/)
 - [Agents with metadata filtering](/examples/agents/metadata_filtering_amazon_bedrock_agents/)
+- [Agents with human_in_the_loop](/examples/agents/human_in_the_loop/)
 
 ## Multi-agent collaboration examples
 
@@ -109,6 +114,7 @@ The solutions presented here use the [boto3 SDK in Python](https://boto3.amazona
 - [Energy Efficiency Management Agent](/examples/multi_agent_collaboration/energy_efficiency_management_agent/)
 - [Mortgage Assistant Agent](/examples/multi_agent_collaboration/mortgage_assistant/)
 - [Portfolio Assistant Agent](/examples/multi_agent_collaboration/portfolio_assistant_agent/)
+- [Real Estate Investment Agent](/examples/multi_agent_collaboration/real_estate_investment_agent/)
 - [Startup Advisor Agent](/examples/multi_agent_collaboration/startup_advisor_agent/)
 - [Support Agent](examples/multi_agent_collaboration/support_agent)
 - [Team Poems Agent](/examples/multi_agent_collaboration/team_poems_agent/)
