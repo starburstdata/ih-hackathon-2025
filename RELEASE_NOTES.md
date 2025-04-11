@@ -1,4 +1,13 @@
+## 4/3/2025
 
+Added examples for agents not yet optimized with Bedrock Agents 
+- [Contract Assistant Agent](/examples/multi_agent_collaboration/not_yet_optimized_models_agent/)
+- [Contract Assistant Agent](/examples/agents/agent_with_models_not_yet_optimized_for_bedrock_agents/)
+
+## 3/31/2025
+
+Added example for contract assistant
+- [Contract Assistant Agent](/examples/multi_agent_collaboration/contract_assistant_agent/)
 
 ## 12/1/2024
 
@@ -96,3 +105,16 @@ Adding [Agent with access to house security camera in cloudformation](/examples/
 ## 03/17/2025
 
 [Human-in-the-loop Agent](/examples/agents/human_in_the_loop/)
+
+
+## 03/31/2025
+
+[Inline Agent SDK](./src/InlineAgent/)
+
+## 04/02/2025
+
+[Langfuse self deployment](/examples/agent_observability/deploy-langfuse-on-ecs-fargate-with-typescript-cdk/)
+
+## 04/07/2025
+
+**[Investment Research Agent](/examples/multi_agent_collaboration/investment_research_agent/)**
