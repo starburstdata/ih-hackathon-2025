@@ -28,6 +28,7 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 function LayoutApp() {
 
+  const [userName, setUserName] = React.useState("Guest User");
   const [open, setOpen] = React.useState(false);
 
   const effectRan = React.useRef(false);
@@ -67,12 +68,12 @@ function LayoutApp() {
             {APP_NAME}
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "inline"} }}>
-              <Chip sx={{  border: 0, fontSize: "0.95em" }} label={"Guest User"} variant="outlined" icon={<SentimentSatisfiedAltIcon />} />
+              <Chip sx={{  border: 0, fontSize: "0.95em" }} label={userName} variant="outlined" icon={<SentimentSatisfiedAltIcon />} />
           </Box>
         </Toolbar>
       </AppBar>
       <Container disableGutters maxWidth="lg" component="main" >
-        <Chat/>
+        <Chat userName={userName} />
       </Container>
       <Box textAlign={"center"} >
         <Typography variant="body2" sx={{ pb: 1, pl: 2, pr: 2, fontSize: '0.775rem' }}>

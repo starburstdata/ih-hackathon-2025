@@ -15,6 +15,10 @@ By the end of this tutorial, you'll have the Amazon Bedrock Agent working in the
 * [Python 3.9 or a later major version installed](https://www.python.org/downloads/) 
 * [Boto3 1.36 or a later major version installed](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
 * Anthropic Claude 3.5 Haiku and Sonnet enabled in Amazon Bedrock
+* Run the following command to make sure a service-linked role exists and to set up RDS for the first time:
+```bash
+aws iam create-service-linked-role --aws-service-name rds.amazonaws.com
+```
 
 **Before proceeding further, verify that you have successfully installed and configured all the listed prerequisites in your development environment.**
 
@@ -127,7 +131,7 @@ The Amazon Bedrock Agent was created and configured with the following informati
 
 Now you can go back to your Amazon Bedrock Agent called **video-games-sales-assistant**, click on **Edit Agent Builder**, in the **Agent builder** section click on **Save**, **Prepare** and **Test**, use the **Test Agent** with the following sample questions:
 
-- Hello
+- Hello!
 - How can you help me?
 - What is the structure of the data?
 - Which developers tend to get the best reviews?

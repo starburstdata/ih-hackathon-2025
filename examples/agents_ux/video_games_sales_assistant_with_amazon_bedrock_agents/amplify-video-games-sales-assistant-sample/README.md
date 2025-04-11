@@ -109,7 +109,7 @@ npm start
 
 You can use the following sample questions to test the Data Analyst Assistant:
 
-- Hello
+- Hello!
 - How can you help me?
 - What is the structure of the data?
 - Which developers tend to get the best reviews?
