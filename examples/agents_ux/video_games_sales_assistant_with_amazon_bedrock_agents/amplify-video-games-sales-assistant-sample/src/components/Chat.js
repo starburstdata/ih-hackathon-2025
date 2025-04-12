@@ -118,7 +118,7 @@ const Chat = ({ userName = "Guest User" }) => {
           totalInputTokens,
           totalOutputTokens,
           runningTraces,
-          countRationals
+          countRationals,
         } = await invokeBedrockAgent(
           sessionId,
           my_query,
@@ -135,7 +135,7 @@ const Chat = ({ userName = "Guest User" }) => {
           totalOutputTokens,
           runningTraces,
           queryUuid,
-          countRationals
+          countRationals,
         };
 
         const queryResults = await getQueryResults(queryUuid);
@@ -484,15 +484,14 @@ const Chat = ({ userName = "Guest User" }) => {
                     <Fade timeout={2000} in={true}>
                       <Box
                         sx={{
-                          borderRadius: borderRadius,
-                          pl: 1,
-                          pr: 1,
                           display: "flex",
-                          alignItems: "flex-start",
-                          mb: 0,
+                          alignItems: "center",
+                          mb: 1,
+                          pl: 2,
+                          py: 1,
                         }}
                       >
-                        <Box sx={{ pl: 1, pt: 1.8 }}>
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
                           <img
                             src="/images/sun.256x256.png"
                             width={22}
@@ -502,16 +501,16 @@ const Chat = ({ userName = "Guest User" }) => {
                         </Box>
 
                         <Box
-                          sx={(theme) => ({
-                            pt: 2,
-                            pb: 1,
-                            pl: 1.5,
+                          sx={{
+                            pl: 0.5,
                             pr: 2,
-                            mb: 1,
-                            mr: 1,
-                          })}
+                            ml: 1,
+                            display: "flex",
+                            alignItems: "center",
+                            flexGrow: 1,
+                          }}
                         >
-                          <Typography color="copy.dark" variant="body1">
+                          <Typography color="text.secondary" variant="body1">
                             {answer.rationaleText}
                           </Typography>
                         </Box>
@@ -533,7 +532,7 @@ const Chat = ({ userName = "Guest User" }) => {
                         mb: 1.5,
                         mr: 1,
                         boxShadow: "rgba(0, 0, 0, 0.05) 0px 4px 12px",
-                        background: "#A4E9DB"
+                        background: "#A4E9DB",
                       })}
                     >
                       <Typography variant="body1">{answer.query}</Typography>
@@ -544,7 +543,7 @@ const Chat = ({ userName = "Guest User" }) => {
             ))}
 
             {loading && (
-              <Box sx={{ p: 0, pl: 1, mb: 2 }}>
+              <Box sx={{ p: 0, pl: 1, mb: 2, mt: 1 }}>
                 <Answering loading={loading} />
               </Box>
             )}
@@ -642,7 +641,9 @@ const Chat = ({ userName = "Guest User" }) => {
           open={openAnswerDetails}
           handleClose={handleCloseAnswerDetails}
           answer={answers[selectedAB]}
-          question={answers[selectedAB - (answers[selectedAB].countRationals+1)].query}
+          question={
+            answers[selectedAB - (answers[selectedAB].countRationals + 1)].query
+          }
         />
       )}
     </Box>

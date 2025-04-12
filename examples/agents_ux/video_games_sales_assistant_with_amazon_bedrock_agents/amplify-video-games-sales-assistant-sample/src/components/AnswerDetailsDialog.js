@@ -12,12 +12,7 @@ import remarkGfm from "remark-gfm";
 import OrchestrationRationaleTraceViewer from "./OrchestrationRationaleTraceViewer.js";
 import "./AnswerDetailsDialog.css";
 
-const AnswerDetailsDialog = ({
-  answer,
-  question,
-  handleClose,
-  open
-}) => {
+const AnswerDetailsDialog = ({ answer, question, handleClose, open }) => {
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState("xxl");
 
@@ -67,10 +62,12 @@ const AnswerDetailsDialog = ({
               sx={{
                 borderRadius: 4,
                 p: 2,
-                background: "#A4E9DB"
+                background: "#A4E9DB",
               }}
             >
-              <OrchestrationRationaleTraceViewer traces={answer.runningTraces} />
+              <OrchestrationRationaleTraceViewer
+                traces={answer.runningTraces}
+              />
             </Box>
           </Grid>
         </Grid>

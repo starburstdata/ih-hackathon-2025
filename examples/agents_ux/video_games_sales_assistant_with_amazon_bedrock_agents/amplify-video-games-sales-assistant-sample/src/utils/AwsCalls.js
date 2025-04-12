@@ -13,7 +13,7 @@ import {
   AGENT_ID,
   AGENT_ALIAS_ID,
   QUESTION_ANSWERS_TABLE_NAME,
-  MODEL_ID_FOR_CHART_AND_DASHBOARD,
+  MODEL_ID_FOR_CHART,
   CHART_PROMPT
 } from "../env.js";
 
@@ -181,8 +181,7 @@ export const invokeBedrockAgent = async (
  * @returns {Object} Chart configuration or rationale for no chart
  */
 export const generateChart = async (
-  answer,
-  setDashboardEnabled
+  answer
 ) => {
   const bedrock = await createAwsClient(BedrockRuntimeClient);
   let query_results = "";
@@ -216,7 +215,7 @@ export const generateChart = async (
     const command = new InvokeModelCommand({
       contentType: "application/json",
       body: JSON.stringify(payload),
-      modelId: MODEL_ID_FOR_CHART_AND_DASHBOARD,
+      modelId: MODEL_ID_FOR_CHART,
     });
 
     const apiResponse = await bedrock.send(command);

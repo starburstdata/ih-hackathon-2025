@@ -27,7 +27,7 @@ const Answering = ({ loading }) => {
             m: 0,
             borderRadius: 4,
             display: "flex",
-            boxShadow: "rgba(0, 0, 0, 0.05) 0px 4px 12px"
+            boxShadow: "rgba(0, 0, 0, 0.05) 0px 4px 12px",
           })}
         >
           <Typography variant="body1">Answering your question...</Typography>

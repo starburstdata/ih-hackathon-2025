@@ -7,34 +7,35 @@ import remarkGfm from "remark-gfm";
 import Alert from "@mui/material/Alert";
 
 const MyChart = ({ caption, options, series, type }) => {
-  const [error, setError] = useState(null);
   const [chartOptions, setChartOptions] = useState(options);
   const [chartSeries, setChartSeries] = useState(series);
 
   useEffect(() => {
-    // Fix for the "Multiple Y Axis for bars" error
-    if (type === 'bar' && options?.yaxis?.length > 1) {
-      setError("Multiple Y Axis for bars are not supported. Using a single Y axis.");
-      // Create a modified options object with a single Y axis
-      const modifiedOptions = {
-        ...options,
-        yaxis: Array.isArray(options.yaxis) ? [options.yaxis[0]] : options.yaxis,
-        plotOptions: {
-          ...options.plotOptions,
-          bar: {
-            ...options.plotOptions?.bar,
-            horizontal: false
-          }
-        }
-      };
-      setChartOptions(modifiedOptions);
-    } else {
-      setChartOptions(options);
-      setError(null);
+    console.log("Apply chart configuration modifications to: ", options);
+
+    const updatedOptions = { ...options };
+    
+    // Disable zoom functionality
+    if (!updatedOptions.chart) {
+      updatedOptions.chart = {};
+    }
+    if (!updatedOptions.chart.zoom) {
+      updatedOptions.chart.zoom = {};
+    }
+    updatedOptions.chart.zoom.enabled = false;
+    
+    // Center align title if it exists
+    if (updatedOptions.hasOwnProperty("title")) {
+      updatedOptions.title.align = "center";
     }
     
-    setChartSeries(series);
-  }, [options, series, type]);
+    // Center align subtitle if it exists
+    if (updatedOptions.hasOwnProperty("subtitle")) {
+      updatedOptions.subtitle.align = "center";
+    }
+    console.log("Chart configuration: ", updatedOptions);
+    setChartOptions(updatedOptions);
+  }, [options]);
 
   return (
     <Box>
@@ -45,7 +46,6 @@ const MyChart = ({ caption, options, series, type }) => {
       </Typography>
       <Box
         sx={(theme) => ({
-          background: "#FFF",
           pt: 1,
           pb: 2,
           pl: 2,
@@ -53,28 +53,28 @@ const MyChart = ({ caption, options, series, type }) => {
           m: 0,
           mb: 1,
           borderRadius: 4,
-          boxShadow: "rgba(0, 0, 0, 0.05) 0px 4px 12px"
+          boxShadow: "rgba(0, 0, 0, 0.05) 0px 4px 12px",
         })}
       >
-        {error && (
-          <Alert severity="warning" sx={{ mb: 2 }}>
-            {error}
-          </Alert>
-        )}
-        
         {/* Error boundary for the Chart component */}
-        <ErrorBoundary fallback={<Alert severity="error">Failed to render chart. Please check your chart configuration.</Alert>}>
-          <Chart 
-            options={chartOptions} 
-            series={chartSeries} 
-            type={type} 
-            height={420} 
+        <ErrorBoundary
+          fallback={
+            <Alert severity="error">
+              Failed to render chart. Please check your chart configuration.
+            </Alert>
+          }
+        >
+          <Chart
+            options={chartOptions}
+            series={chartSeries}
+            type={type}
+            height={420}
           />
         </ErrorBoundary>
       </Box>
     </Box>
   );
-}
+};
 
 // Error Boundary component to catch render errors
 class ErrorBoundary extends React.Component {
