@@ -1,4 +1,4 @@
-# Getting Started with SAM Video Games Sales Assistant and Amazon Bedrock Agents
+# Generative AI Application - Data Source and Amazon Bedrock Agent Deployment
 
 This tutorial guides you through the process of setting up the back-end using AWS Serverless Application Model (SAM) and the Amazon Bedrock Agent. The services to be deployed are: Virtual Private Cloud (VPC), Lambda Function, Aurora Serverless PostgreSQL Cluster Database, AWS Secrets Manager, and Amazon DynamoDB Table within the SAM Project. Using Python scripts, you will create an Amazon S3 Bucket to upload the sales data source and create the Amazon Bedrock Agent.
 
@@ -150,7 +150,7 @@ To use the agent in the front-end application, you need to **create an Alias of 
 
 You can now follow the tutorial [Getting Started with Amplify Video Games Sales Assistant](../amplify-video-games-sales-assistant-sample/) to deploy the front-end application. The tutorial will ask you for your your alias along with the other services that you have created so far.
 
-## Cleaning-up Resources (optional)
+## Cleaning-up Resources (Optional)
 
 The next steps are optional and demonstrate how to delete the resources that we've created.
 Update the following exports with the values of the services you created before, and then execute.
