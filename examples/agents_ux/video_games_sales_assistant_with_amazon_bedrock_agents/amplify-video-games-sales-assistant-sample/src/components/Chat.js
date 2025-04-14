@@ -475,6 +475,13 @@ const Chat = ({ userName = "Guest User" }) => {
                               </Typography>
                             </Box>
                           )}
+
+                          {answer.chart.hasOwnProperty("rationale") && (
+                            <Typography variant="caption" color="secondaryText">
+                              {answer.chart.rationale}
+                            </Typography>
+                          )}
+
                         </Box>
                       )}
                     </Box>

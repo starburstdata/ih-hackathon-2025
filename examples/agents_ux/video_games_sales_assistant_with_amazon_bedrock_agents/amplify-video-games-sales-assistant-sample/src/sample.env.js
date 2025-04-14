@@ -20,11 +20,12 @@ const WELCOME_MESSAGE = "I'm your Video Games Sales Data Analyst, crunching data
 
 const MAX_LENGTH_INPUT_SEARCH = 140;
 const MODEL_ID_FOR_CHART = "us.anthropic.claude-3-5-sonnet-20241022-v2:0";
+
 const CHART_PROMPT =
   '\n\
 Create detailed ApexCharts.js configurations based on the information provided to support the answer. Focus on meaningful data analysis and visually appealing charts.\n\
 \n\
-Input Data\n\
+Input Data:\n\
 \n\
 <information>\n\
     <summary>\n\
@@ -46,6 +47,8 @@ If you do not have a chart configuration, use only the following output format:\
 \n\
 <has_chart>0</has_chart>\n\
 <rationale>[The reason to do not generate a chart configuration, max 12 words]</rationale>\n\
+\n\
+- Provide the caption and chart information in the same language as the summary information.\n\
 \n\
 Chart Requirements:\n\
 \n\
@@ -96,7 +99,7 @@ Example Chart Configurations:\n\
    ],\n\
    "options":{\n\
       "chart":{\n\
-         "height":350,\n\
+         "height":420,\n\
          "type":"line",\n\
          "zoom":{\n\
             "enabled":false\n\
@@ -161,7 +164,7 @@ Example Chart Configurations:\n\
    "options":{\n\
       "chart":{\n\
          "type":"bar",\n\
-         "height":350,\n\
+         "height":420,\n\
          "dropShadow":{\n\
             "enabled":true\n\
          }\n\
@@ -228,7 +231,7 @@ Example Chart Configurations:\n\
    "options":{\n\
       "chart":{\n\
          "type":"bar",\n\
-         "height":350\n\
+         "height":420\n\
       },\n\
       "plotOptions":{\n\
          "bar":{\n\
@@ -267,7 +270,7 @@ Example Chart Configurations:\n\
   "options": {\n\
     "chart": {\n\
       "type": "pie",\n\
-      "height": 380\n\
+      "height": 420\n\
     },\n\
     "labels": ["North America", "Europe", "Other Regions", "Japan"],\n\
     "title": {\n\

@@ -5,76 +5,83 @@ import Typography from "@mui/material/Typography";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Alert from "@mui/material/Alert";
+import { useTheme } from "@mui/material/styles";
 
 const MyChart = ({ caption, options, series, type }) => {
-  const [chartOptions, setChartOptions] = useState(options);
-  const [chartSeries, setChartSeries] = useState(series);
+  const theme = useTheme();
+  const [isVisible, setIsVisible] = useState(false);
+  const [chartSeries, setChartSeries] = useState([]);
+  const [chartOptions, setChartOptions] = useState({});
+  
+  useEffect(() => {
+    // Start visibility transition for fade-in effect
+    const visibilityTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    
+    // Start series data animation by setting the actual data with a delay
+    const seriesTimer = setTimeout(() => {
+      setChartSeries(series);
+    }, 300);
+    
+    return () => {
+      clearTimeout(visibilityTimer);
+      clearTimeout(seriesTimer);
+    };
+  }, [series]);
 
   useEffect(() => {
-    console.log("Apply chart configuration modifications to: ", options);
-
-    const updatedOptions = { ...options };
-    
-    // Disable zoom functionality
-    if (!updatedOptions.chart) {
-      updatedOptions.chart = {};
+    // Apply additional chart configurations
+    const enhancedOptions = { ...options };
+    if (!enhancedOptions.chart) {
+      enhancedOptions.chart = {};
     }
-    if (!updatedOptions.chart.zoom) {
-      updatedOptions.chart.zoom = {};
+    enhancedOptions.chart.zoom = { enabled: false };
+    if (enhancedOptions.title) {
+      enhancedOptions.title.align = "center";
     }
-    updatedOptions.chart.zoom.enabled = false;
-    
-    // Center align title if it exists
-    if (updatedOptions.hasOwnProperty("title")) {
-      updatedOptions.title.align = "center";
+    if (enhancedOptions.subtitle) {
+      enhancedOptions.subtitle.align = "center";
     }
-    
-    // Center align subtitle if it exists
-    if (updatedOptions.hasOwnProperty("subtitle")) {
-      updatedOptions.subtitle.align = "center";
-    }
-    console.log("Chart configuration: ", updatedOptions);
-    setChartOptions(updatedOptions);
+    setChartOptions(enhancedOptions);
   }, [options]);
 
   return (
     <Box>
-      <Typography component="div" variant="body1">
+      <Box
+        sx={{
+          p: 1,
+          m: 0,
+          mb: 1,
+          borderRadius: 4,
+          overflow: "hidden",
+          transition: "opacity 0.8s ease-in, transform 0.8s ease-out",
+          boxShadow: "rgba(0, 0, 0, 0.05) 0px 4px 12px",
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        }}
+      > 
+        <ErrorBoundary fallback={<Alert severity="error">Failed to render chart. Please check your chart configuration.</Alert>}>
+          <Chart 
+            options={chartOptions} 
+            series={chartSeries} 
+            type={type} 
+            height="420px"
+            width="100%"
+          />
+        </ErrorBoundary>
+      </Box>
+      <Typography 
+        component="div" 
+        variant="body1"
+      >
         <ReactMarkdown remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
           {caption}
         </ReactMarkdown>
       </Typography>
-      <Box
-        sx={(theme) => ({
-          pt: 1,
-          pb: 2,
-          pl: 2,
-          pr: 2,
-          m: 0,
-          mb: 1,
-          borderRadius: 4,
-          boxShadow: "rgba(0, 0, 0, 0.05) 0px 4px 12px",
-        })}
-      >
-        {/* Error boundary for the Chart component */}
-        <ErrorBoundary
-          fallback={
-            <Alert severity="error">
-              Failed to render chart. Please check your chart configuration.
-            </Alert>
-          }
-        >
-          <Chart
-            options={chartOptions}
-            series={chartSeries}
-            type={type}
-            height={420}
-          />
-        </ErrorBoundary>
-      </Box>
     </Box>
   );
-};
+}
 
 // Error Boundary component to catch render errors
 class ErrorBoundary extends React.Component {
