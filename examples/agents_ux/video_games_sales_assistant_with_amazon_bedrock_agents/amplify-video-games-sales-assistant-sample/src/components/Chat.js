@@ -1,6 +1,4 @@
 import React, { useLayoutEffect, useRef, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
@@ -29,6 +27,7 @@ import {
   getQueryResults,
   generateChart,
 } from "../utils/AwsCalls";
+import MarkdownRenderer from "./MarkdownRenderer.js";
 
 const Chat = ({ userName = "Guest User" }) => {
   const [totalAnswers, setTotalAnswers] = React.useState(0);
@@ -265,13 +264,7 @@ const Chat = ({ userName = "Guest User" }) => {
                             }}
                           >
                             <Typography component="div" variant="body1">
-                              <ReactMarkdown
-                                remarkPlugins={[
-                                  [remarkGfm, { singleTilde: false }],
-                                ]}
-                              >
-                                {answer.text}
-                              </ReactMarkdown>
+                              <MarkdownRenderer content={answer.text} />
                             </Typography>
                           </Box>
                         </Grow>
@@ -481,7 +474,6 @@ const Chat = ({ userName = "Guest User" }) => {
                               {answer.chart.rationale}
                             </Typography>
                           )}
-
                         </Box>
                       )}
                     </Box>

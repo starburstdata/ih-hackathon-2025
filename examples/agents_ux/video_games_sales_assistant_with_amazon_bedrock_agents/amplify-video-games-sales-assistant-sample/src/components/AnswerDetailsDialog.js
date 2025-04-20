@@ -7,10 +7,8 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import OrchestrationRationaleTraceViewer from "./OrchestrationRationaleTraceViewer.js";
-import "./AnswerDetailsDialog.css";
+import MarkdownRenderer from "./MarkdownRenderer.js";
 
 const AnswerDetailsDialog = ({ answer, question, handleClose, open }) => {
   const [fullWidth, setFullWidth] = React.useState(true);
@@ -48,13 +46,9 @@ const AnswerDetailsDialog = ({ answer, question, handleClose, open }) => {
               >
                 Answer
               </Typography>
-              <div id="answer-details-dialog-table">
-                <ReactMarkdown
-                  remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
-                >
-                  {answer.text}
-                </ReactMarkdown>
-              </div>
+              <Typography component="div" variant="body1">
+                <MarkdownRenderer content={answer.text} />
+              </Typography>
             </Box>
           </Grid>
           <Grid size={{ sm: 12, md: 12, xs: 6, md: 6 }}>

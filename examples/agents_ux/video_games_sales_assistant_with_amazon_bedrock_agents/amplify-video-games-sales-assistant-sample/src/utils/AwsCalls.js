@@ -244,17 +244,6 @@ export const generateChart = async (
         ),
       };
 
-      // Add additional chart configuration
-      chart.chart_configuration.options.chart.zoom = { enabled: false };
-
-      if (chart.chart_configuration.options.hasOwnProperty("title")) {
-        chart.chart_configuration.options.title.align = "center";
-      }
-
-      if (chart.chart_configuration.options.hasOwnProperty("subtitle")) {
-        chart.chart_configuration.options.subtitle.align = "center";
-      }
-
       console.log("------- Final chart generation -------");
       console.log(chart);
       
