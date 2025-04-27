@@ -34,7 +34,7 @@ Navigate to the React application folder (amplify-video-games-sales-assistant-sa
 npm install
 ```
 
-### Configure IAM User Access for Front-End Permissions
+## Configure IAM User Access for Front-End Permissions
 
 - [Create an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)
 - [Create Access key and Secret access key](https://docs.aws.amazon.com/keyspaces/latest/devguide/create.keypair.html) for programmatic access
@@ -82,7 +82,7 @@ Update the values with your **<agent_arn>**, **<agent_id>**, **<account_id>** an
 }
 ```
 
-### Configure Environment Variables
+## Configure Environment Variables
 
 - Rename the file **src/sample.env.js** to **src/env.js** and update the following environment variables:
 
@@ -101,7 +101,7 @@ Update the values with your **<agent_arn>**, **<agent_id>**, **<account_id>** an
         - **APP_SUBJECT**
         - **WELCOME_MESSAGE**
 
-### Test Your Data Analyst Assistant
+## Test Your Data Analyst Assistant
 
 Start the application locally:
 

@@ -91,7 +91,7 @@ After deployment completes, the following services will be created:
 > [!NOTE]
 > To learn about agent creation configuration, please refer to [this tutorial](./manual_database_data_load_and_agent_creation.md), which provides step-by-step guidance for setting up an Amazon Bedrock Agent in the AWS Console.
 
-### Load Sample Data into PostgreSQL Database
+## Load Sample Data into PostgreSQL Database
 
 Set up the required environment variables:
 
@@ -123,7 +123,7 @@ The script uses the **[video_games_sales_no_headers.csv](./resources/database/vi
 > [!NOTE]
 > The data source provided contains information from [Video Game Sales](https://www.kaggle.com/datasets/asaniczka/video-game-sales-2024) which is made available under the [ODC Attribution License](https://opendatacommons.org/licenses/odbl/1-0/).
 
-### Test the Agent in AWS Console
+## Test the Agent in AWS Console
 
 Navigate to your Amazon Bedrock Agent named **video-games-sales-assistant**:
 
