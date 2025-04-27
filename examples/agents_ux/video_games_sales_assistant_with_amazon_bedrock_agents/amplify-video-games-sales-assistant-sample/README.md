@@ -129,7 +129,7 @@ Try these sample questions to test the assistant:
 
 ## Application Features
 
-Congratulations! Your Data Analyst Assistant now provides:
+Congratulations! Your Data Analyst Assistant can provide you with the following conversational experience:
 
 - **Conversational interface with an agent responding to user questions**
 

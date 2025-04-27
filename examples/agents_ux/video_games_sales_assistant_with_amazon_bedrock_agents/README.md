@@ -67,7 +67,7 @@ The deployment consists of two main steps:
 
 ## Application Features
 
-The following images showcase a conversation analysis that includes natural language answers, the rationale used by the LLM to generate SQL queries, the records retrieved from those queries, and the resulting chart visualizations.
+The following images showcase a conversational experience analysis that includes: natural language answers, the reasoning process used by the LLM to generate SQL queries, the database records retrieved from those queries, and the resulting chart visualizations.
 
 - **Conversational interface with an agent responding to user questions**
 
