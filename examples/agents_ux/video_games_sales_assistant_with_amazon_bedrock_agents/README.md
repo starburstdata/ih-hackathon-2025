@@ -16,8 +16,6 @@ This solution enables users to:
 
 > [!IMPORTANT]
 > This sample application is meant for demo purposes and is not production ready. Please make sure to validate the code with your organizations security best practices.
->
-> Remember to clean up resources after testing to avoid unnecessary costs by following the clean-up steps provided.
 
 ## Architecture Overview
 
@@ -64,6 +62,9 @@ The deployment consists of two main steps:
 
 > [!NOTE]
 > *It is recommended to use the Oregon (us-west-2) or N. Virginia (us-east-1) regions to deploy the application.*
+
+> [!IMPORTANT] 
+> Remember to clean up resources after testing to avoid unnecessary costs by following the clean-up steps provided.
 
 ## Application Features
 
