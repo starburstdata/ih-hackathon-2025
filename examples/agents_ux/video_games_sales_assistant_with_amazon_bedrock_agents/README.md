@@ -1,6 +1,6 @@
 # Deploying a Conversational Data Analyst Assistant Solution with Amazon Bedrock Agents
 
-This solution provides a Generative AI application reference that allows users to interact with data through a natural language interface. The solution connects Amazon Bedrock Agents to a PostgreSQL database, providing data analysis capabilities through a React Web Application interface.
+This solution provides a Generative AI application reference that allows users to interact with data through a natural language interface. The solution connects Amazon Bedrock Agents to a PostgreSQL database, providing data analysis capabilities through a Web Application interface.
 
 ![Video Games Sales Assistant](./images/preview.png)
 
@@ -47,7 +47,7 @@ The solution deploys the following AWS services:
 
 The **user interaction workflow** operates as follows:
 
-- The React web application sends user business questions to the Amazon Bedrock Agent
+- The web application sends user business questions to the Amazon Bedrock Agent
 - The agent (powered by Claude 3.5 Haiku) processes natural language and determines when to execute database queries
 - Lambda functions execute SQL queries against the Aurora PostgreSQL database and send the results back to the agent, which formulates an answer to the question
 - After the agent's response is received by the web application, the raw data query results are retrieved from the DynamoDB table to display both the answer and the corresponding records

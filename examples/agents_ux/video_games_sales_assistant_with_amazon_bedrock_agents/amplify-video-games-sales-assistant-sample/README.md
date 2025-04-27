@@ -1,6 +1,6 @@
 # Front-End Implementation - Integrating Amazon Bedrock Agent with a Ready-to-Use Data Analyst Assistant Application
 
-This tutorial guides you through setting up a React front-end application that integrates with your Amazon Bedrock Agent, creating a Data Analyst Assistant for Video Game Sales.
+This tutorial guides you through setting up a React Web application that integrates with your Amazon Bedrock Agent, creating a Data Analyst Assistant for Video Game Sales.
 
 ## Overview
 
