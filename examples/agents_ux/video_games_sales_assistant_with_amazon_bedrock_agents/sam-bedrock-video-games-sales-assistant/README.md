@@ -37,7 +37,7 @@ Before you begin, ensure you have:
 aws iam create-service-linked-role --aws-service-name rds.amazonaws.com
 ```
 
-## Deploy the Back-End Services with SAM
+## Deploy the Back-End Services with AWS SAM
 
 Navigate to the SAM project folder (sam-bedrock-video-games-sales-assistant/) and execute::
 
