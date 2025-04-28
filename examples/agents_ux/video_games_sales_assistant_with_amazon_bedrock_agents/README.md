@@ -4,7 +4,7 @@ This solution provides a Generative AI application reference that allows users t
 
 ![Video Games Sales Assistant](./images/preview.png)
 
-## Solution Overview
+A Data Analyst Assistant offers an approach to data analysis that enables enterprises to interact with their structured data through natural language conversations rather than complex SQL queries. This kind of assistant provides an intuitive question-answering for data analysis conversations and can be improved by offering data visualizations to enhance the user experience.
 
 This solution enables users to:
 
@@ -14,10 +14,12 @@ This solution enables users to:
 - Explore data through automatically generated visualizations
 - Get insights and analysis from the AI assistant
 
+## Solution Overview
+
+The following architecture diagram illustrates a reference solution for a generative AI data analyst assistant that is powered by Amazon Bedrock Agents. This assistant enables users to access structured data that is stored in a PostgreSQL database through a question-answering interface.
+
 > [!IMPORTANT]
 > This sample application is meant for demo purposes and is not production ready. Please make sure to validate the code with your organizations security best practices.
-
-## Architecture Overview
 
 ![Video Games Sales Assistant](./images/gen-ai-assistant-diagram.png)
 
