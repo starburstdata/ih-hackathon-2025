@@ -1,4 +1,4 @@
-# Amazon Bedrock Agent Observability with OpenTelemetry
+# Amazon Bedrock Agent Observability with OpenTelemetry on Dynatrace
 
 An OpenTelemetry example to provide observability to AWS Bedrock Agents.
 
