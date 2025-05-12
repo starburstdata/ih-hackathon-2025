@@ -14,22 +14,23 @@ This solution provides a Generative AI application reference that allows users t
 - Explore data through automatically generated visualizations
 - Get insights and analysis from the AI assistant
 
-
 🚀 This reference solution can help you explore use cases like:
 
-• Empower analysts with real-time business intelligence
-• Provide quick answers to C-level executives for common business questions
-• Unlock new revenue streams through data monetization (consumer behavior, audience segmentation)
-• Optimize infrastructure through performance insights
+- Empower analysts with real-time business intelligence
+- Provide quick answers to C-level executives for common business questions
+- Unlock new revenue streams through data monetization (consumer behavior, audience segmentation)
+- Optimize infrastructure through performance insights
 
 ## Solution Overview
 
 The following architecture diagram illustrates a reference solution for a generative AI data analyst assistant that is powered by Amazon Bedrock Agents. This assistant enables users to access structured data that is stored in a PostgreSQL database through a question-answering interface.
 
+![Video Games Sales Assistant](./images/gen-ai-assistant-diagram.png)
+
 > [!IMPORTANT]
 > This sample application is meant for demo purposes and is not production ready. Please make sure to validate the code with your organizations security best practices.
-
-![Video Games Sales Assistant](./images/gen-ai-assistant-diagram.png)
+> 
+> Cost Alert: This solution will cost approximately $180 USD per month, mainly for Aurora Serverless and RDS Proxy, plus the usage of on-demand services like Amazon Bedrock and Lambda functions. Please ensure you understand these costs before deployment.
 
 The solution deploys the following AWS services:
 
