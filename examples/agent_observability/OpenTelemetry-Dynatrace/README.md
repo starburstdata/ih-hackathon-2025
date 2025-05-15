@@ -4,6 +4,11 @@ An OpenTelemetry example to provide observability to AWS Bedrock Agents.
 
 ## Setup
 
+Create a [Free Dynatrace Trial](https://www.dynatrace.com/signup/) for 15 days.
+After a few minutes, you will get redirected to your tenant. The URL will look like `https://wkf10640.apps.dynatrace.com/`.
+The value `wkf10640` is your environment id which will be needed later.
+
+
 ### Prerequisites
 1. AWS account with appropriate IAM permissions for Amazon Bedrock Agents
 2. An existing Amazon Bedrock Agent (or follow AWS documentation to create one)
