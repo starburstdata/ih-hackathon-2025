@@ -19,5 +19,6 @@
 - [Tony Santiago](https://github.com/tsanti)
 - [Aswath Ram A. Srinivasan](https://github.com/aswathsr101)
 - [Lucas Banerji](https://github.com/LucaiB)
+- [Emir Ayar](https://github.com/eercanayar)
 - [Anna Gruebler Clark](https://github.com/annainspace)
 - [HYUNJUN KWON](https://github.com/T0M4TO)
