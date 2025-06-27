@@ -11,7 +11,7 @@ The value `wkf10640` is your environment id which will be needed later.
 
 ### Prerequisites
 1. AWS account with appropriate IAM permissions for Amazon Bedrock Agents
-2. An existing Amazon Bedrock Agent (or follow AWS documentation to create one)
+2. An existing Amazon Bedrock Agent (or follow [AWS documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-create.html) to create one)
 3. A Dynatrace Token, to create one:
 
    1. In Dynatrace, go to **Access Tokens**. To find **Access Tokens**, press **Ctrl/Cmd+K** to search for and select **Access Tokens**.
