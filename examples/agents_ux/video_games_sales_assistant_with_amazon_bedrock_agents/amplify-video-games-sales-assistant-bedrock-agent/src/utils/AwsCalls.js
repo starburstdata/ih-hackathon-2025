@@ -8,13 +8,17 @@ import {
   InvokeAgentCommand,
 } from "@aws-sdk/client-bedrock-agent-runtime";
 import { createAwsClient } from "./AwsAuth";
-import { extractBetweenTags, removeCharFromStartAndEnd, handleFormatter } from "./Utils.js";
+import {
+  extractBetweenTags,
+  removeCharFromStartAndEnd,
+  handleFormatter,
+} from "./Utils.js";
 import {
   AGENT_ID,
   AGENT_ALIAS_ID,
   QUESTION_ANSWERS_TABLE_NAME,
   MODEL_ID_FOR_CHART,
-  CHART_PROMPT
+  CHART_PROMPT,
 } from "../env.js";
 
 /**
@@ -62,10 +66,14 @@ export const getQueryResults = async (queryUuid = "") => {
 };
 
 /**
- * Invoke an AWS Bedrock agent
+ * Invoke an AWS Bedrock agent with streaming console output
  *
  * @param {string} sessionId - The session ID
  * @param {string} inputText - The text to send to the agent
+ * @param {Function} setAnswers - State setter for answers
+ * @param {Function} setControlAnswers - State setter for control answers
+ * @param {string} userName - User name
+ * @param {string} queryUuid - Query UUID
  * @returns {Promise<Object>} - The agent response with comprehensive data
  */
 export const invokeBedrockAgent = async (
@@ -91,6 +99,7 @@ export const invokeBedrockAgent = async (
         },
       },
       enableTrace: true,
+      streamingConfigurations: { streamFinalResponse: true },
     };
 
     const command = new InvokeAgentCommand(input);
@@ -100,6 +109,11 @@ export const invokeBedrockAgent = async (
     let completion = "";
     let runningTraces = [];
     let countRationals = 0;
+    let hasReceivedFirstChunk = false;
+
+    // Initialize streaming output
+    console.log("------- Agent Response (Streaming) -------");
+    let streamingOutput = "";
 
     const response = await bedrock.send(command);
     if (response.completion === undefined) {
@@ -107,19 +121,56 @@ export const invokeBedrockAgent = async (
     }
 
     for await (let chunkEvent of response.completion) {
-      //console.log("------- Invoke Agent - Chunk Response -------");
-      //console.log("Full chunk event structure:", JSON.stringify(chunkEvent));
+      // Handle text chunks from the agent's response
       if (chunkEvent.chunk) {
         const chunk = chunkEvent.chunk;
         const decodedResponse = new TextDecoder("utf-8").decode(chunk.bytes);
+
+        streamingOutput += decodedResponse;
         completion += decodedResponse;
+
+        // Add initial answer object only after receiving the first chunk
+        if (!hasReceivedFirstChunk) {
+          hasReceivedFirstChunk = true;
+          setAnswers((prevState) => [
+            ...prevState,
+            { text: completion, isStreaming: true },
+          ]);
+          setControlAnswers((prevState) => [
+            ...prevState,
+            { current_tab_view: "answer" },
+          ]);
+        } else {
+          // Update the existing streaming answer with new text
+          setAnswers((prevState) => {
+            const newState = [...prevState];
+            // Find the last answer that is streaming and update it
+            for (let i = newState.length - 1; i >= 0; i--) {
+              if (newState[i].isStreaming) {
+                newState[i] = {
+                  ...newState[i],
+                  text: completion,
+                };
+                break;
+              }
+            }
+            return newState;
+          });
+        }
+
+        // Log with timestamp for debugging
+        console.log(
+          `[${new Date().toISOString()}] Chunk received:`,
+          decodedResponse
+        );
       }
 
+      // Handle trace information
       if (chunkEvent.trace) {
         runningTraces = [...runningTraces, chunkEvent.trace.trace];
 
         if (chunkEvent.trace.trace.orchestrationTrace?.rationale?.text) {
-          console.log("-----rationale------");
+          console.log("\n-----rationale------");
           console.log(
             chunkEvent.trace.trace.orchestrationTrace?.rationale?.text
           );
@@ -133,8 +184,54 @@ export const invokeBedrockAgent = async (
           ]);
           setControlAnswers((prevState) => [...prevState, {}]);
         }
+
+        // Log other trace events for debugging
+        if (
+          chunkEvent.trace.trace.orchestrationTrace?.observation?.finalResponse
+            ?.text
+        ) {
+          console.log("\n-----final response------");
+          console.log(
+            chunkEvent.trace.trace.orchestrationTrace?.observation
+              ?.finalResponse?.text
+          );
+        }
+
+        if (
+          chunkEvent.trace.trace.orchestrationTrace?.invocationInput
+            ?.invocationInputs
+        ) {
+          console.log("\n-----invocation input------");
+          console.log(
+            JSON.stringify(
+              chunkEvent.trace.trace.orchestrationTrace?.invocationInput
+                ?.invocationInputs,
+              null,
+              2
+            )
+          );
+        }
+      }
+      
+      // Handle other event types
+      if (chunkEvent.returnControl) {
+        console.log("\n-----return control------");
+        console.log(JSON.stringify(chunkEvent.returnControl, null, 2));
+      }
+
+      if (chunkEvent.internalServerException) {
+        console.error("\n-----internal server exception------");
+        console.error(chunkEvent.internalServerException);
+      }
+
+      if (chunkEvent.validationException) {
+        console.error("\n-----validation exception------");
+        console.error(chunkEvent.validationException);
       }
     }
+
+    console.log("------- End of Agent Response -------");
+    console.log("Complete Streaming Output:", streamingOutput);
 
     // Calculate token usage
     let usage = [];
@@ -155,10 +252,13 @@ export const invokeBedrockAgent = async (
       }
     }
 
-    console.log("------- Invoke Agent - Traces -------");
-    console.log(runningTraces);
-    console.log("------- Invoke Agent - Completion -------");
+    console.log("------- Invoke Agent - Final Summary -------");
+    console.log("Total Input Tokens:", totalInputTokens);
+    console.log("Total Output Tokens:", totalOutputTokens);
+    console.log("Rationale Count:", countRationals);
+    console.log("------- Complete Response Text -------");
     console.log(completion);
+
     return {
       sessionId,
       completion,
@@ -166,7 +266,7 @@ export const invokeBedrockAgent = async (
       totalInputTokens,
       totalOutputTokens,
       runningTraces,
-      countRationals
+      countRationals,
     };
   } catch (error) {
     console.error("Error invoking Bedrock agent:", error);
@@ -174,19 +274,17 @@ export const invokeBedrockAgent = async (
   }
 };
 
-
 /**
  * Generates a chart based on answer and data
  * @param {Object} answer - Answer object containing text
  * @returns {Object} Chart configuration or rationale for no chart
  */
-export const generateChart = async (
-  answer
-) => {
+export const generateChart = async (answer) => {
   const bedrock = await createAwsClient(BedrockRuntimeClient);
   let query_results = "";
   for (let i = 0; i < answer.queryResults.length; i++) {
-    query_results += JSON.stringify(answer.queryResults[i].query_results) + "\n";
+    query_results +=
+      JSON.stringify(answer.queryResults[i].query_results) + "\n";
   }
 
   // Prepare the prompt
@@ -246,7 +344,7 @@ export const generateChart = async (
 
       console.log("------- Final chart generation -------");
       console.log(chart);
-      
+
       return chart;
     } else {
       return {
@@ -263,5 +361,3 @@ export const generateChart = async (
     };
   }
 };
-
-

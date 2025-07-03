@@ -109,6 +109,7 @@ const Chat = ({ userName = "Guest User" }) => {
       setLoading(true);
       setErrorMessage("");
       setQuery("");
+
       try {
         const queryUuid = uuidv4();
         const {
@@ -134,7 +135,7 @@ const Chat = ({ userName = "Guest User" }) => {
           totalOutputTokens,
           runningTraces,
           queryUuid,
-          countRationals,
+          countRationals
         };
 
         const queryResults = await getQueryResults(queryUuid);
@@ -146,11 +147,17 @@ const Chat = ({ userName = "Guest User" }) => {
 
         console.log(json);
 
-        setControlAnswers((prevState) => [
-          ...prevState,
-          { current_tab_view: "answer" },
-        ]);
-        setAnswers((prevState) => [...prevState, json]);
+        // Update the final answer with complete data
+        setAnswers((prevState) => {
+          const newState = [...prevState];
+          for (let i = newState.length - 1; i >= 0; i--) {
+            if (newState[i].isStreaming) {
+              newState[i] = json;
+              break;
+            }
+          }
+          return newState;
+        });
 
         setLoading(false);
         setEnabled(false);
@@ -159,6 +166,19 @@ const Chat = ({ userName = "Guest User" }) => {
           json.chart = await generateChart(json);
           console.log("--------- Answer after chart generation ------");
           console.log(json);
+
+          // Update again with chart data
+          setAnswers((prevState) => {
+            const newState = [...prevState];
+            for (let i = newState.length - 1; i >= 0; i--) {
+              if (newState[i].queryUuid === queryUuid) {
+                newState[i] = json;
+                break;
+              }
+            }
+            return newState;
+          });
+
           setTotalAnswers((prevState) => prevState + 1);
         } else {
           console.log("------- Answer without chart-------");
@@ -170,6 +190,23 @@ const Chat = ({ userName = "Guest User" }) => {
         setErrorMessage(error.toString());
         setLoading(false);
         setEnabled(false);
+
+        // Update the streaming answer with error state
+        setAnswers((prevState) => {
+          const newState = [...prevState];
+          for (let i = newState.length - 1; i >= 0; i--) {
+            if (newState[i].isStreaming) {
+              newState[i] = {
+                ...newState[i],
+                text: "Error occurred while getting response",
+                isStreaming: false,
+                error: true,
+              };
+              break;
+            }
+          }
+          return newState;
+        });
       }
     }
   };
