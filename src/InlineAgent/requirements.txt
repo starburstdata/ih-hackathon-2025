@@ -1,3 +1,4 @@
 setuptools
 twine
 wheel
+flask>=2.0.0
