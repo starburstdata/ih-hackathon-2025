@@ -3,11 +3,320 @@ from flask import Flask, request, jsonify
 import asyncio
 
 instruction = """
-You are a friendly assistant that is responsible manipulating a data structure.
-The format of the data structure is: `(id, name, type, path, [nested])` where: V=VARCHAR, B=BIGINT, A=ARRAY.
+You are a friendly assistant that is responsible manipulating a JSON data structure.
 An example data structure is:
 ```
-[(1,"specversion","V","/specversion"),(2,"id","V","/id"),(3,"source","V","/source"),(4,"type","V","/type"),(5,"time","V","/time"),(7,"duration_millis","B","/data/durationMillis"),(8,"cluster_id","V","/data/clusterId"),(9,"account_id","V","/data/accountId"),(10,"deployment_id","V","/data/deploymentId"),(11,"cloud_region_id","V","/data/cloudRegionId"),(12,"payment_tier","V","/data/paymentTier"),(13,"variant","V","/data/variant"),(14,"role","V","/data/role"),(15,"node_instance_type","V","/data/nodeInstanceType"),(16,"pod_name","V","/data/podName"),(17,"pod_ip","V","/data/podIp"),(18,"catalog_metrics","A","/data/catalogMetrics",[(21,"catalog_id","V","/catalogId"),(22,"catalog_name","V","/catalogName"),(23,"intra_region_read_bytes","B","/intraRegionReadBytes"),(24,"intra_region_write_bytes","B","/intraRegionWriteBytes"),(25,"cross_region_read_bytes","B","/crossRegionReadBytes"),(26,"cross_region_write_bytes","B","/crossRegionWriteBytes"),(27,"private_link_read_bytes","B","/privateLinkReadBytes"),(28,"private_link_write_bytes","B","/privateLinkWriteBytes")])]
+[
+            {
+                "columnId": 1,
+                "trinoColumnName": "specversion",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/specversion",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 2,
+                "trinoColumnName": "id",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/id",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 3,
+                "trinoColumnName": "source",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/source",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 4,
+                "trinoColumnName": "type",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/type",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 5,
+                "trinoColumnName": "time",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/time",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 6,
+                "trinoColumnName": "cloud_region_id",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/cloudRegionId",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 7,
+                "trinoColumnName": "account_id",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/accountId",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 8,
+                "trinoColumnName": "payment_tier",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/paymentTier",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 9,
+                "trinoColumnName": "service_name",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/serviceName",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 10,
+                "trinoColumnName": "task_source_type",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/taskSourceType",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 11,
+                "trinoColumnName": "live_table_id",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/liveTableId",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 12,
+                "trinoColumnName": "live_table_instance_id",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/liveTableInstanceId",
+                    "parseParameters": {
+                        "varchar.type": "scalar"
+                    }
+                },
+                "trinoType": {
+                    "typeId": "VARCHAR",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 13,
+                "trinoColumnName": "reserved_compute_unit_millis",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/reservedComputeUnitMillis",
+                    "parseParameters": {}
+                },
+                "trinoType": {
+                    "typeId": "BIGINT",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 14,
+                "trinoColumnName": "reserved_cpu_millis",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/reservedCpuMillis",
+                    "parseParameters": {}
+                },
+                "trinoType": {
+                    "typeId": "BIGINT",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 15,
+                "trinoColumnName": "reserved_memory_millis",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/reservedMemoryMillis",
+                    "parseParameters": {}
+                },
+                "trinoType": {
+                    "typeId": "BIGINT",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 16,
+                "trinoColumnName": "actual_compute_unit_millis",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/actualComputeUnitMillis",
+                    "parseParameters": {}
+                },
+                "trinoType": {
+                    "typeId": "BIGINT",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 17,
+                "trinoColumnName": "actual_cpu_millis",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/actualCpuMillis",
+                    "parseParameters": {}
+                },
+                "trinoType": {
+                    "typeId": "BIGINT",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 18,
+                "trinoColumnName": "actual_memory_millis",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/actualMemoryMillis",
+                    "parseParameters": {}
+                },
+                "trinoType": {
+                    "typeId": "BIGINT",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            },
+            {
+                "columnId": 19,
+                "trinoColumnName": "duration_millis",
+                "parseProperties": {
+                    "@type": "json",
+                    "relativeJsonPointer": "/data/durationMillis",
+                    "parseParameters": {}
+                },
+                "trinoType": {
+                    "typeId": "BIGINT",
+                    "typeParameters": {}
+                },
+                "required": false,
+                "nestedColumns": []
+            }
+        ]
 ```
 The user may ask you to:
 1. Add a new field to the data structure.
@@ -20,7 +329,8 @@ The user may ask you to:
 8. Change the type of a nested field in the data structure.
 
 You should always return the updated data structure in the same format as above. The data structure will
-be used by a downstream system, so it is important to maintain the format and structure.
+be used by a downstream system, so it is important to maintain the format and structure. Respond with the 
+updated data structure only, without any additional text or explanation.
 """
 
 # Step 3: Define agent
@@ -48,11 +358,8 @@ def invoke_agent():
         
         # Invoke the agent with the provided input text
         result = asyncio.run(agent.invoke(input_text=input_text))
-        
-        return jsonify({
-            'result': str(result),
-            'status': 'success'
-        })
+
+        return result
     except Exception as e:
         return jsonify({
             'error': f'Agent invocation failed: {str(e)}',
