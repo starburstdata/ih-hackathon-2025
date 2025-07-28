@@ -8,7 +8,6 @@ An example data structure is:
 ```
 [
             {
-                "columnId": 1,
                 "trinoColumnName": "specversion",
                 "parseProperties": {
                     "@type": "json",
@@ -25,7 +24,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 2,
                 "trinoColumnName": "id",
                 "parseProperties": {
                     "@type": "json",
@@ -42,7 +40,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 3,
                 "trinoColumnName": "source",
                 "parseProperties": {
                     "@type": "json",
@@ -59,7 +56,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 4,
                 "trinoColumnName": "type",
                 "parseProperties": {
                     "@type": "json",
@@ -76,7 +72,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 5,
                 "trinoColumnName": "time",
                 "parseProperties": {
                     "@type": "json",
@@ -93,7 +88,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 6,
                 "trinoColumnName": "cloud_region_id",
                 "parseProperties": {
                     "@type": "json",
@@ -110,7 +104,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 7,
                 "trinoColumnName": "account_id",
                 "parseProperties": {
                     "@type": "json",
@@ -127,7 +120,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 8,
                 "trinoColumnName": "payment_tier",
                 "parseProperties": {
                     "@type": "json",
@@ -144,7 +136,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 9,
                 "trinoColumnName": "service_name",
                 "parseProperties": {
                     "@type": "json",
@@ -161,7 +152,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 10,
                 "trinoColumnName": "task_source_type",
                 "parseProperties": {
                     "@type": "json",
@@ -178,7 +168,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 11,
                 "trinoColumnName": "live_table_id",
                 "parseProperties": {
                     "@type": "json",
@@ -195,7 +184,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 12,
                 "trinoColumnName": "live_table_instance_id",
                 "parseProperties": {
                     "@type": "json",
@@ -212,7 +200,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 13,
                 "trinoColumnName": "reserved_compute_unit_millis",
                 "parseProperties": {
                     "@type": "json",
@@ -227,7 +214,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 14,
                 "trinoColumnName": "reserved_cpu_millis",
                 "parseProperties": {
                     "@type": "json",
@@ -242,7 +228,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 15,
                 "trinoColumnName": "reserved_memory_millis",
                 "parseProperties": {
                     "@type": "json",
@@ -257,7 +242,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 16,
                 "trinoColumnName": "actual_compute_unit_millis",
                 "parseProperties": {
                     "@type": "json",
@@ -272,7 +256,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 17,
                 "trinoColumnName": "actual_cpu_millis",
                 "parseProperties": {
                     "@type": "json",
@@ -287,7 +270,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 18,
                 "trinoColumnName": "actual_memory_millis",
                 "parseProperties": {
                     "@type": "json",
@@ -302,7 +284,6 @@ An example data structure is:
                 "nestedColumns": []
             },
             {
-                "columnId": 19,
                 "trinoColumnName": "duration_millis",
                 "parseProperties": {
                     "@type": "json",
