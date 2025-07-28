@@ -25,13 +25,14 @@ async def main():
 
         # Step 4: Invoke agent
         await InlineAgent(
-            # Step 4.1: Provide the model
-            foundation_model="us.anthropic.claude-3-5-sonnet-20241022-v2:0",
+            # Step 4.1: Provide the model (using inference profile ARN)
+            foundation_model="arn:aws:bedrock:us-west-2:310018062324:inference-profile/us.anthropic.claude-sonnet-4-20250514-v1:0",
             # Step 4.2: Concise instruction
             instruction="""You are a friendly assistant that is responsible for resolving user queries. """,
             # Step 4.3: Provide the agent name and action group
             agent_name="time_agent",
             action_groups=[time_action_group],
+            profile="hackathon",
         ).invoke(
             input_text="Convert 12:30pm to Europe/London timezone? My timezone is America/New_York"
         )

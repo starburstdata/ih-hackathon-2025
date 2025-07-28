@@ -30,6 +30,7 @@ agent = InlineAgent(
     instruction="You are a friendly assistant that is responsible for getting the current weather.",
     action_groups=[weather_action_group],
     agent_name="MockAgent",
+    profile="hackathon",
 )
 
 # Step 4: Invoke agent
